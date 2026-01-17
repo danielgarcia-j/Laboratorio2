@@ -31,7 +31,16 @@ public:
         cabeza = nullptr;
     }
 
-    
+    void imprimirLista() {
+        Nodo* actual = cabeza;
+
+        while (actual != nullptr) {
+            cout << "Nombre: " << actual->estudiante.nombre
+                 << " | Nota: " << actual->estudiante.nota << endl;
+            actual = actual->siguiente;
+        }
+    }
+
     void agregarEstudiante(string nombre, float nota) {
         Estudiante nuevoEstudiante(nombre, nota);
         Nodo* nuevoNodo = new Nodo(nuevoEstudiante);
@@ -46,12 +55,15 @@ public:
             actual->siguiente = nuevoNodo;
         }
     }
-    
 };
+
 int main() {
     ListaEnlazada lista;
     lista.agregarEstudiante("Mario", 8.4);
-    lista.agregarEstudiante("Nathalia", 7.0);
+    lista.agregarEstudiante("Nathalia", 9.0);
+    lista.agregarEstudiante("Elena", 8.7);
+     lista.agregarEstudiante("Alessandra", 6.0);
+    lista.imprimirLista();
 
     return 0;
 }
