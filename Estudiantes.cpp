@@ -25,10 +25,34 @@ public:
 class ListaEnlazada {
 private:
     Nodo* cabeza;
+    float sumaRecu(Nodo* nodo){
+        if(nodo == nullptr){
+            return 0;
+        }
+        return nodo->estudiante.nota + sumaRecu(nodo->siguiente);
+    }
+    
+    int contarRecu(Nodo* nodo){
+        if(nodo == nullptr){
+            return 0;
+        }
+        return 1 + contarRecu(nodo->siguiente);
+    }
 
 public:
-    ListaEnlazada() {
+    ListaEnlazada(){
         cabeza = nullptr;
+    }
+    
+    float calcularPromedio(){
+        if(cabeza == nullptr){
+            return 0;
+        }
+
+        float suma = sumaRecu(cabeza);
+        int contador = contarRecu(cabeza);
+
+        return suma / contador;
     }
 
     void imprimirLista() {
@@ -101,7 +125,8 @@ int main() {
         cout << "\n----- MENU -----\n";
         cout << "1. Ver lista de estudiantes\n";
         cout << "2. Agregar mas estudiantes\n";
-        cout << "3. Salir\n";
+        cout << "3. Ver promedio notas\n";
+        cout << "4. Salir\n";
         cout << "Elige una opcion: ";
         cin >> opcion;
 
@@ -130,12 +155,15 @@ int main() {
                 break;
             }
             case 3:
+                cout << "Promedio de notas: " << lista.calcularPromedio() << endl;
+                break;
+            case 4:
                 cout << "Saliendo...\n";
                 break;
             default:
                 cout << "Opcion invalida.\n";
         }
-    } while (opcion != 3);
+    } while (opcion != 4);
 
     return 0;
 }
