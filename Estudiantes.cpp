@@ -50,8 +50,8 @@ public:
 };
 int main() {
     ListaEnlazada lista;
-    lista.agregarEstudiante("Juan", 8.5);
-    lista.agregarEstudiante("Maria", 9.0);
+    lista.agregarEstudiante("Mario", 8.4);
+    lista.agregarEstudiante("Nathalia", 7.0);
 
     return 0;
 }
