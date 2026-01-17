@@ -1,19 +1,14 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
 class Estudiante {
 public:
     string nombre;
-    float notaFinal;
+    float nota;
 
-    Estudiante(string n, float nota) {
+    Estudiante(string n, float no) {
         nombre = n;
-        notaFinal = nota;
-    }
-
-    void imprimir() {
-        cout << nombre << " - " << notaFinal << endl;
+        nota = no;
     }
 };
 
@@ -27,7 +22,36 @@ public:
     }
 };
 
+class ListaEnlazada {
+private:
+    Nodo* cabeza;
+
+public:
+    ListaEnlazada() {
+        cabeza = nullptr;
+    }
+
+    
+    void agregarEstudiante(string nombre, float nota) {
+        Estudiante nuevoEstudiante(nombre, nota);
+        Nodo* nuevoNodo = new Nodo(nuevoEstudiante);
+
+        if (cabeza == nullptr) {
+            cabeza = nuevoNodo;
+        } else {
+            Nodo* actual = cabeza;
+            while (actual->siguiente != nullptr) {
+                actual = actual->siguiente;
+            }
+            actual->siguiente = nuevoNodo;
+        }
+    }
+    
+};
 int main() {
-    cout << "Laboratorio 2 - Base creada" << endl;
+    ListaEnlazada lista;
+    lista.agregarEstudiante("Juan", 8.5);
+    lista.agregarEstudiante("Maria", 9.0);
+
     return 0;
 }
